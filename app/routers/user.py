@@ -30,7 +30,7 @@ def user_by_id(user_id: int, db: Annotated[Session, Depends(get_db)]):
 @router.post("/create")
 def create_user(user_data: CreateUser, db: Annotated[Session, Depends(get_db)]):
     new_user = User(
-        username=user_data.username,
+        username=slugify(user_data.username),
         firstname=user_data.firstname,
         lastname=user_data.lastname,
         age=user_data.age,
